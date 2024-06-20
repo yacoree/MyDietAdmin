@@ -1,0 +1,153 @@
+﻿<Window x:Class="MyDietAdmin.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyDietAdmin"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Ингредиенты">
+                <Grid Background="#FFE5E5E5">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="Ingredients">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=ingredient_name}">Название ингредиента</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Grid Grid.Column="1" HorizontalAlignment="Center">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Название" FontSize="18" Margin="5" Width="300"/>
+                            <TextBox x:Name="IngredientName" FontSize="18" Margin="5" Width="300"/>
+
+                            <TextBlock Text="Изображение" FontSize="18" Margin="5" Width="300"/>
+                            <TextBox x:Name="IngredientImage" FontSize="18" Margin="5" Width="300"/>
+
+                            <StackPanel Margin="5" Width="300" Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock Text="Калории" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="IngredientCalories" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel >
+                                    <TextBlock Text="Белки" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="IngredientProtein" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Жиры" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="IngredientFats" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Углеводы" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="IngredientCarbohydrates" FontSize="18" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <Button Content="Save" Width="150" Height="25" Click="SaveIngredient_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Блюда">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="Dishes" Grid.ColumnSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn DisplayMemberBinding="{Binding Path=dish_name}">Название блюда</GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+
+                    <Grid Grid.Column="2" HorizontalAlignment="Center">
+                        <StackPanel VerticalAlignment="Center">
+                            <TextBlock Text="Название" FontSize="18" Margin="5" Width="300"/>
+                            <TextBox x:Name="DishName" FontSize="18" Margin="5" Width="300"/>
+                            <TextBlock Text="Изображение" FontSize="18" Margin="5" Width="300"/>
+                            <TextBox x:Name="DishImage" FontSize="18" Margin="5" Width="300"/>
+
+                            <StackPanel Margin="5" Width="300" Orientation="Horizontal">
+                                <StackPanel>
+                                    <TextBlock Text="Калории" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishCalories" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel >
+                                    <TextBlock Text="Белки" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishProtein" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Жиры" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishFats" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Углеводы" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishCarbohydrates" FontSize="18" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <TextBlock Text="Рецепт" FontSize="18" Margin="5" Width="300"/>
+                            <TextBox x:Name="DishRecipe" FontSize="18" Margin="5" Width="300" TextWrapping="Wrap" AcceptsReturn="True" Height="100"/>
+
+                            <StackPanel Orientation="Horizontal" Margin="5" Width="auto">
+                                <StackPanel>
+                                    <TextBlock Text="Ингредиент" FontSize="18" Margin="5"/>
+                                    <ComboBox x:Name="DishCompositionIngredient" FontSize="18" Margin="5" DisplayMemberPath="ingredient_name"/>
+                                </StackPanel>
+
+                                <StackPanel >
+                                    <TextBlock Text="Тип измерения" FontSize="18" Margin="5"/>
+                                    <ComboBox x:Name="DishCompositionUnit" FontSize="18" Margin="5" DisplayMemberPath="unit_name"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Количество" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishCompositionValue" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <StackPanel>
+                                    <TextBlock Text="Mасса" FontSize="18" Margin="5"/>
+                                    <TextBox x:Name="DishCompositionWeight" FontSize="18" Margin="5"/>
+                                </StackPanel>
+
+                                <Button Content="+" Width="25" Margin="5" Height="25" Click="AddIngredient_Click" VerticalAlignment="Bottom"/>
+                            </StackPanel>
+
+                            <ListView x:Name="DishComposition" Grid.ColumnSpan="2" Width="300" Margin="5">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=ingredient_id}">ингредиент</GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=unit_id}">Мера</GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=value}">Количество</GridViewColumn>
+                                        <GridViewColumn DisplayMemberBinding="{Binding Path=weight}">Масса</GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
+                            <Button Content="Save" Width="150" Height="25" Click="SaveDish_Click" Margin="5"/>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>
